@@ -1,0 +1,2974 @@
+﻿<process name="RetailScoringModels" version="1.0" bpversion="6.4.0.8445" narrative="" byrefcollection="true" preferredid="6efefce7-0614-4328-93d8-03e7d0001508">
+  <view>
+    <camerax>178</camerax>
+    <cameray>57</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <subsheet subsheetid="250c2c36-24f2-4772-921a-c1a4fdce4551" type="Normal" published="False">
+    <name>SetRefDataCollection</name>
+    <view>
+      <camerax>166</camerax>
+      <cameray>93</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="66d97512-eefe-41c1-a883-0c6b5c823e64" type="Normal" published="False">
+    <name>IV Home Loan Works</name>
+    <view>
+      <camerax>504.6</camerax>
+      <cameray>75</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="1269ad16-075e-4626-9e89-3b8217c58ef9" type="Normal" published="False">
+    <name>Pivot Setup</name>
+    <view>
+      <camerax>-503.6</camerax>
+      <cameray>111</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <stage stageid="1d245e17-0bbf-4bba-a76f-905d8bac0529" name="Start" type="Start">
+    <narrative>
+    </narrative>
+    <displayx>-225</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>105921bf-46cb-4573-ac4c-ce5c8032292c</onsuccess>
+  </stage>
+  <stage stageid="51118b88-3bc8-463d-a845-75f5ba752641" name="End" type="End">
+    <narrative>
+    </narrative>
+    <displayx>300</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+  </stage>
+  <stage stageid="b935d1f3-3f6a-49fc-bda1-2bb84820572e" name="Stage1" type="ProcessInfo">
+    <narrative>
+    </narrative>
+    <displayx>-195</displayx>
+    <displayy>-105</displayy>
+    <displaywidth>150</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+  </stage>
+  <stage stageid="6f0c5924-f1ed-4d46-a99f-8c4674c9b9a8" name="Input" type="Block">
+    <narrative>
+    </narrative>
+    <displayx>-105</displayx>
+    <displayy>-195</displayy>
+    <displaywidth>255</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="37f0d4e8-b99b-4a48-b6e7-a108a9edbdd1" name="Output" type="Block">
+    <narrative>
+    </narrative>
+    <displayx>-105</displayx>
+    <displayy>105</displayy>
+    <displaywidth>690</displaywidth>
+    <displayheight>60</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="FF99CC" />
+  </stage>
+  <stage stageid="105921bf-46cb-4573-ac4c-ce5c8032292c" name="Create Instance" type="Action">
+    <narrative>
+    </narrative>
+    <displayx>-150</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="flag" name="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="True" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>c56b272d-b9e9-4c1e-9916-657b8c1029e3</onsuccess>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="f2d61071-1f9b-4b5e-8f53-769cccc893d6" name="handle" type="Data">
+    <narrative>
+    </narrative>
+    <displayx>-75</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="f3ec4788-d2c9-4d67-8a52-ab78971e7977" name="Close Instance" type="Action">
+    <narrative>
+    </narrative>
+    <displayx>225</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance to be closed. Zero indicates the currently active instance." expr="[handle]" />
+      <input type="flag" name="Save Changes" narrative="True to save the changes to the open workbooks on the instance, False to discard any changes. Default is False." expr="False" />
+    </inputs>
+    <onsuccess>51118b88-3bc8-463d-a845-75f5ba752641</onsuccess>
+    <resource object="MS Excel VBO" action="Close Instance" />
+  </stage>
+  <stage stageid="0ad32585-343b-47de-b629-e1f08a929e7e" name="RetailScoringRefFile" type="Data">
+    <narrative>
+    </narrative>
+    <displayx>-75</displayx>
+    <displayy>-150</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <exposure>Environment</exposure>
+    <alwaysinit />
+  </stage>
+  <stage stageid="c11a4020-1def-4826-acac-411c66f4d88f" name="WB" type="Data">
+    <narrative>
+    </narrative>
+    <displayx>-15</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="c56b272d-b9e9-4c1e-9916-657b8c1029e3" name="Show" type="Action">
+    <narrative>
+    </narrative>
+    <displayx>-75</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance which should have its window displayed. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <onsuccess>3df6c210-35b0-4d2f-99c5-dd0d32e0129c</onsuccess>
+    <resource object="MS Excel VBO" action="Show" />
+  </stage>
+  <stage stageid="1696079a-4dcf-4caa-af4a-c7cd49cc95fc" name="FilePath Data" type="Collection">
+    <narrative>
+    </narrative>
+    <displayx>45</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>collection</datatype>
+    <alwaysinit />
+  </stage>
+  <stage stageid="a71e7e4f-e7f1-437d-9148-22b97f3b29dc" name="SheetRef Data" type="Collection">
+    <narrative>
+    </narrative>
+    <displayx>105</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>collection</datatype>
+    <noalwaysinit />
+  </stage>
+  <stage stageid="a15fc6f3-0fd8-4026-a2bb-ae0c79e211f8" name="SetRefDataCollection" type="SubSheetInfo">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-195</displayx>
+    <displayy>-105</displayy>
+    <displaywidth>150</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+  </stage>
+  <stage stageid="cd143778-83ae-43f3-aa0a-9290e5d467a3" name="Start" type="Start">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-240</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>9b7010a5-3db7-44e1-b013-ea52167d6f6c</onsuccess>
+  </stage>
+  <stage stageid="1a17b37b-3e25-457e-8711-26fba178ae94" name="End" type="End">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>195</displayx>
+    <displayy>90</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+  </stage>
+  <stage stageid="5a0429cb-be22-4df7-92fb-bd102a62c6ab" name="Ref WB Worksheets" type="LoopStart">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-15</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>12823873-0511-4d88-90bf-bc5037fd0301</onsuccess>
+    <groupid>8bda20f7-152a-4bce-aba4-b49d501e830b</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Worksheet Names</loopdata>
+  </stage>
+  <stage stageid="a95c74fe-2849-4000-a254-476a176b2131" name="Ref WB Worksheets" type="LoopEnd">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>345</displayx>
+    <displayy>90</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a4f29c5c-d424-4890-b44b-f97afd227cbe</onsuccess>
+    <groupid>8bda20f7-152a-4bce-aba4-b49d501e830b</groupid>
+  </stage>
+  <stage stageid="7f623712-9fec-4b9e-ad12-64b93466d0e9" name="Get Cell Reference" type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>135</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required cell should be sought. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Direction" narrative="The direction in which the next empty cell is required. This should start with any of &quot;U&quot;, &quot;D&quot;, &quot;L&quot; or &quot;R&quot; to find a cell up, down, left or right respectively. The direction parameter is not case-sensitive." expr="&quot;R&quot;" />
+      <input type="flag" name="Activate Cell?" narrative="True to activate the cell which is found; False to just return the reference and leave the active cell as it was before. Default is False." expr="True" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Cell Reference" narrative="The cell reference identifying the next empty cell from the active cell in the direction given. An empty value indicates that there were no empty cells between the active cell and a boundary." stage="Cell Reference" />
+    </outputs>
+    <onsuccess>7f2e86ae-75dd-419b-a584-17798881aa19</onsuccess>
+    <resource object="MS Excel VBO" action="Find Next Empty Cell" />
+  </stage>
+  <stage stageid="01c9c36a-adf3-4551-be09-d610f07cea01" name="Worksheet Name" type="ChoiceStart">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>465</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <groupid>859fb7c8-0312-4c7f-bbed-4e70483d0c96</groupid>
+    <choices>
+      <choice expression="[Worksheet Names.Name] = &quot;FilePath&quot;">
+        <name>File Path</name>
+        <distance>30</distance>
+        <ontrue>40ec7380-1737-4311-852c-72ac9c3865f6</ontrue>
+      </choice>
+      <choice expression="[Worksheet Names.Name] = &quot;SheetRef&quot;">
+        <name>Sheet Ref</name>
+        <distance>60</distance>
+        <ontrue>c23dd675-3a25-42e7-a315-1e5d9c86be90</ontrue>
+      </choice>
+    </choices>
+  </stage>
+  <stage stageid="a7d4aee9-cd8b-4780-88cd-012a45530597" name="Otherwise1" type="ChoiceEnd">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>465</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a95c74fe-2849-4000-a254-476a176b2131</onsuccess>
+    <groupid>859fb7c8-0312-4c7f-bbed-4e70483d0c96</groupid>
+  </stage>
+  <stage stageid="40ec7380-1737-4311-852c-72ac9c3865f6" name="Extract FilePath Data " type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>420</displayx>
+    <displayy>0</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet within the specified workbook which should be written to a collection. The default empty text indicates the currently active worksheet within the specified workbook." expr="[Worksheet Names.Name]" />
+      <input type="text" name="StartCell" narrative="The starting cell of the range of interest" expr="&quot;B1&quot;" />
+      <input type="text" name="EndCell" narrative="The end cell of the range of interest" expr="[Cell Reference]" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Data" narrative="The spreadsheet data from the specified range, as a collection" stage="FilePath Data" />
+    </outputs>
+    <onsuccess>a95c74fe-2849-4000-a254-476a176b2131</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet Range As Collection" />
+  </stage>
+  <stage stageid="12823873-0511-4d88-90bf-bc5037fd0301" name="Select" type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>60</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="&quot;A1&quot;" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[Worksheet Names.Name]" />
+    </inputs>
+    <onsuccess>7f623712-9fec-4b9e-ad12-64b93466d0e9</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="c23dd675-3a25-42e7-a315-1e5d9c86be90" name="Extract SheetRef Data " type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>420</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet within the specified workbook which should be written to a collection. The default empty text indicates the currently active worksheet within the specified workbook." expr="[Worksheet Names.Name]" />
+      <input type="text" name="StartCell" narrative="The starting cell of the range of interest" expr="&quot;B1&quot;" />
+      <input type="text" name="EndCell" narrative="The end cell of the range of interest" expr="[Cell Reference]" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Data" narrative="The spreadsheet data from the specified range, as a collection" stage="SheetRef Data" />
+    </outputs>
+    <onsuccess>a95c74fe-2849-4000-a254-476a176b2131</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet Range As Collection" />
+  </stage>
+  <stage stageid="5c280270-d6ef-4bd3-9388-9c9fd6ce5fff" name="Get Code of Chr" type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>285</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Letter" expr="Left([Cell Reference],1)" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Code" stage="Code" />
+    </outputs>
+    <onsuccess>c93da6a5-f31d-4135-b9a8-0ab966370919</onsuccess>
+    <resource object="ASCI Values" action="ANSI Codes" />
+  </stage>
+  <stage stageid="7f2e86ae-75dd-419b-a584-17798881aa19" name="Chr len" type="Decision">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>210</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <decision expression="Len([Cell Reference]) =2" />
+    <ontrue>5c280270-d6ef-4bd3-9388-9c9fd6ce5fff</ontrue>
+    <onfalse>b1aaecdc-ffb7-4b73-a26c-0eba2f942353</onfalse>
+  </stage>
+  <stage stageid="b1aaecdc-ffb7-4b73-a26c-0eba2f942353" name="Get Code of Chr" type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>285</displayx>
+    <displayy>-75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Letter" expr="Mid([Cell Reference],2,1)" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Code" stage="Code" />
+    </outputs>
+    <onsuccess>86ac4dbf-5a60-4847-bf58-8838911975ea</onsuccess>
+    <resource object="ASCI Values" action="ANSI Codes" />
+  </stage>
+  <stage stageid="c93da6a5-f31d-4135-b9a8-0ab966370919" name="Calculate Cell Ref" type="Calculation">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>360</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>01c9c36a-adf3-4551-be09-d610f07cea01</onsuccess>
+    <calculation expression="Chr([Code]-1)&amp;2" stage="Cell Reference" />
+  </stage>
+  <stage stageid="86ac4dbf-5a60-4847-bf58-8838911975ea" name="Calculate Cell Ref" type="Calculation">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>360</displayx>
+    <displayy>-75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>01c9c36a-adf3-4551-be09-d610f07cea01</onsuccess>
+    <calculation expression="[SheetRef Data.CIF]&amp;Chr([Code]-1)&amp;2" stage="Cell Reference" />
+  </stage>
+  <stage stageid="3df6c210-35b0-4d2f-99c5-dd0d32e0129c" name="SetRefDataCollection" type="SubSheet">
+    <narrative>
+    </narrative>
+    <displayx>0</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Reference Workbook" expr="[WB]" />
+      <input type="number" name="handle" expr="[handle]" />
+    </inputs>
+    <onsuccess>b449d46e-9675-49b5-8371-3650d456ced2</onsuccess>
+    <processid>250c2c36-24f2-4772-921a-c1a4fdce4551</processid>
+  </stage>
+  <stage stageid="d6b30170-75ac-4ec3-bcbf-899b417cf983" name="Output" type="Block">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-90</displayx>
+    <displayy>150</displayy>
+    <displaywidth>420</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="FF99CC" />
+  </stage>
+  <stage stageid="c73fd67d-042b-4309-9921-bd1d6091d868" name="Input" type="Block">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-90</displayx>
+    <displayy>-195</displayy>
+    <displaywidth>255</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="3bc975aa-0709-4411-b97a-b8f6f81d12ef" name="Code" type="Data">
+    <narrative>
+    </narrative>
+    <displayx>165</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="4806467c-3773-43ba-96e8-e83ca479571c" name="Worksheet Names" type="Collection">
+    <narrative>
+    </narrative>
+    <displayx>225</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>collection</datatype>
+    <alwaysinit />
+  </stage>
+  <stage stageid="d0169df3-e037-4952-a1a1-2890c607b0cb" name="IV Home Loan Works" type="SubSheetInfo">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-195</displayx>
+    <displayy>-240</displayy>
+    <displaywidth>150</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+  </stage>
+  <stage stageid="99d1311e-6c2a-407a-8120-6e7e3c460a5b" name="Start" type="Start">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-240</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>000f2085-fc83-4433-93f3-a1c9277e1b38</onsuccess>
+  </stage>
+  <stage stageid="13d0f78c-7c6d-458e-945c-fa27c62423b9" name="End" type="End">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>600</displayx>
+    <displayy>120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+  </stage>
+  <stage stageid="e0b0b1f0-1a6a-4845-9db9-5e16e95a2349" name="Open IV Home Loan WB" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>135</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" narrative="The path and name of the file which should be opened." expr="[FilePath Data.IV_Homeloan]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="WB" />
+    </outputs>
+    <onsuccess>63fc13e2-e0f7-4369-a984-d64f50a11df6</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="607ab38d-a464-41a0-8489-768e62123558" name="Get Code" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>135</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Letter" expr="[SheetRef Data.CIF]" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Code" stage="Code" />
+    </outputs>
+    <onsuccess>ee683cd0-d2e2-4dad-a399-f528f5e2d761</onsuccess>
+    <resource object="ASCI Values" action="ANSI Codes" />
+  </stage>
+  <stage stageid="5ca2a111-1010-4bde-be56-ab04930d4d0d" name="Count &lt; RowNum" type="Decision">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>525</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <decision expression="[Count] &lt;= [RowNum]" />
+    <ontrue>b109872a-7114-4617-893f-5dd8432ae589</ontrue>
+    <onfalse>b614d98e-6c2b-4a0d-b180-cee56fd20ed5</onfalse>
+  </stage>
+  <stage stageid="5ab01c71-9524-47f2-8b92-04d683be61bd" name="Count++" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>450</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>5ca2a111-1010-4bde-be56-ab04930d4d0d</onsuccess>
+    <calculation expression="[Count] + 1" stage="Count" />
+  </stage>
+  <stage stageid="a43a618a-2350-44ae-a8be-94a54db6f2a8" name="Set Header" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>450</displayx>
+    <displayy>-75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="[Cell Reference]&amp;1" />
+      <input type="text" name="Value" narrative="The value to which the specified cell should be set." expr="&quot;PARA_VALUE_&quot;&amp;[Count]" />
+    </inputs>
+    <onsuccess>0a683351-829f-41c7-b23a-59b2abab28af</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="63fc13e2-e0f7-4369-a984-d64f50a11df6" name="Get Workhseet Names" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>210</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Worksheet Names" narrative="A collection of worksheet names found in the specified workbook" stage="Worksheet Names" />
+    </outputs>
+    <onsuccess>6906661b-98ee-4aff-8309-6c1e7cd1ffa7</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet Names" />
+  </stage>
+  <stage stageid="9b7010a5-3db7-44e1-b013-ea52167d6f6c" name="Open Ref WB" type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-165</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" narrative="The path and name of the file which should be opened." expr="[RetailScoringRefFile]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="WB" />
+    </outputs>
+    <onsuccess>875fb1df-4610-4cf0-8d9d-5528f5a6b8d5</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="a4f29c5c-d424-4890-b44b-f97afd227cbe" name="Close Ref WB" type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>270</displayx>
+    <displayy>90</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the workbook which should be closed resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook which should be closed." expr="[WB]" />
+      <input type="flag" name="Save Data" narrative="True to save the data before closing the workbook; The default of False will discard any changes before closing the workbook." expr="False" />
+    </inputs>
+    <onsuccess>1a17b37b-3e25-457e-8711-26fba178ae94</onsuccess>
+    <resource object="MS Excel VBO" action="Close Workbook" />
+  </stage>
+  <stage stageid="875fb1df-4610-4cf0-8d9d-5528f5a6b8d5" name="Get Worksheet Name" type="Action">
+    <subsheetid>250c2c36-24f2-4772-921a-c1a4fdce4551</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-90</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Worksheet Names" narrative="A collection of worksheet names found in the specified workbook" stage="Worksheet Names" />
+    </outputs>
+    <onsuccess>5a0429cb-be22-4df7-92fb-bd102a62c6ab</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet Names" />
+  </stage>
+  <stage stageid="9ddccd3c-e171-4bb2-995b-002ab635c894" name="Input" type="Block">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-105</displayx>
+    <displayy>-315</displayy>
+    <displaywidth>255</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="20263408-ad08-4931-a704-e239060e2a23" name="Output" type="Block">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-105</displayx>
+    <displayy>165</displayy>
+    <displaywidth>390</displaywidth>
+    <displayheight>60</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="FF99CC" />
+  </stage>
+  <stage stageid="9b59904c-14a9-4a2c-85fe-a38ac197f11e" name="Cell Reference" type="Data">
+    <narrative>
+    </narrative>
+    <displayx>285</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="61c62d79-ee9b-42df-808f-1e5986339bfb" name="Set Cell Ref" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>375</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>5ab01c71-9524-47f2-8b92-04d683be61bd</onsuccess>
+    <calculation expression="Chr([Code]+6+[Count])" stage="Cell Reference" />
+  </stage>
+  <stage stageid="5cd13529-caf4-4973-93ff-b44699d79d51" name="Anchor7" type="Anchor">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>330</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>10</displaywidth>
+    <displayheight>10</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>61c62d79-ee9b-42df-808f-1e5986339bfb</onsuccess>
+  </stage>
+  <stage stageid="ee683cd0-d2e2-4dad-a399-f528f5e2d761" name="Set Header" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>210</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="Chr([Code]+5)&amp;1" />
+      <input type="text" name="Value" narrative="The value to which the specified cell should be set." expr="&quot;PARA_VALUE&quot;" />
+    </inputs>
+    <onsuccess>ac7823a9-5ea2-4118-b9ed-43329bccc1f7</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="c28c7b73-0bf5-4dfd-bc6e-9287c04445a6" name="Select" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>60</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="[SheetRef Data.CIF]&amp;&quot;1&quot;" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[WorkloadWS]" />
+    </inputs>
+    <onsuccess>607ab38d-a464-41a0-8489-768e62123558</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="b109872a-7114-4617-893f-5dd8432ae589" name="Count &gt; 20" type="Decision">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>525</displayx>
+    <displayy>-75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <decision expression="[Count] &gt; 20" />
+    <ontrue>2d8a9670-4655-4244-8a62-4c9633ef404b</ontrue>
+    <onfalse>a43a618a-2350-44ae-a8be-94a54db6f2a8</onfalse>
+  </stage>
+  <stage stageid="2d8a9670-4655-4244-8a62-4c9633ef404b" name="Set Header" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>525</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="[SheetRef Data.CIF]&amp;Chr([Count]-20+64)&amp;1" />
+      <input type="text" name="Value" narrative="The value to which the specified cell should be set." expr="&quot;PARA_VALUE_&quot;&amp;[Count]" />
+    </inputs>
+    <onsuccess>0a683351-829f-41c7-b23a-59b2abab28af</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="c4af03c4-65b8-495e-a623-a6593653dde0" name="Select" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>75</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="Chr([Code]+5)&amp;&quot;2:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)&amp;[Number of rows]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="&quot;HL &quot;&amp;[Years.Years]" />
+    </inputs>
+    <onsuccess>90b8f195-c8b2-4f20-90c4-19fbf0c6b1b4</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="3db4e66d-8caa-4707-92ed-a392638cd57e" name="Select" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>225</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="Chr([Code]+5)&amp;&quot;2&quot;" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="&quot;HL &quot;&amp;[Years.Years]" />
+    </inputs>
+    <onsuccess>ee68e5f1-9cc3-4d9a-97fe-199248bfdcac</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="ee68e5f1-9cc3-4d9a-97fe-199248bfdcac" name="Copy" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>150</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="number" name="Handle" expr="[handle]" />
+    </inputs>
+    <onsuccess>c4af03c4-65b8-495e-a623-a6593653dde0</onsuccess>
+    <resource object="MS Excel VBO" action="Copy" />
+  </stage>
+  <stage stageid="90b8f195-c8b2-4f20-90c4-19fbf0c6b1b4" name="Paste" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>0</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="flag" name="Values Only" expr="False" />
+    </inputs>
+    <onsuccess>920dee72-901f-4ba0-8568-1526c10437bd</onsuccess>
+    <resource object="MS Excel VBO" action="Paste" />
+  </stage>
+  <stage stageid="da1b6e89-dee6-42f1-913f-a3cb8f6ebeba" name="Set Cell Value" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>300</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="Chr([Code]+5)&amp;&quot;2&quot;" />
+      <input type="text" name="Value" narrative="The value to which the specified cell should be set." expr="[Formula]" />
+    </inputs>
+    <onsuccess>3db4e66d-8caa-4707-92ed-a392638cd57e</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="e7869620-53a3-4f8c-b1ab-ace96c69a7d9" name="Years" type="LoopStart">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>675</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>937d9b51-88dd-4525-8f12-33f7010b9998</onsuccess>
+    <groupid>160b6ef1-69c8-41dc-90f3-c33d59259ca2</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Years</loopdata>
+  </stage>
+  <stage stageid="308a4b27-189c-4d7e-9eb3-65053377fdeb" name="Years" type="LoopEnd">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-150</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>2bcd58f0-c985-4209-849f-679917c3927b</onsuccess>
+    <groupid>160b6ef1-69c8-41dc-90f3-c33d59259ca2</groupid>
+  </stage>
+  <stage stageid="937d9b51-88dd-4525-8f12-33f7010b9998" name="Filter with year" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>600</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[WorkloadWS]" />
+      <input type="text" name="FilterColumLetter" expr="[SheetRef Data.CellStart]" />
+      <input type="text" name="FilterCriteria" expr="&quot;&quot;&amp;[Years.Years]" />
+      <input type="number" name="FilterFieldNum" expr="2" />
+    </inputs>
+    <onsuccess>0ebe0ca4-1057-4314-8b2a-668f057a35c4</onsuccess>
+    <resource object="MS Excel VBO" action="Filter Global" />
+  </stage>
+  <stage stageid="71e2f298-98f2-4216-a572-084b44ccd73d" name="Calculate the formula" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>375</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>da1b6e89-dee6-42f1-913f-a3cb8f6ebeba</onsuccess>
+    <calculation expression="&quot;=VLOOKUP($&quot;&amp;[SheetRef Data.CIF]&amp;&quot;2,'[Home Loan &quot;&amp;[Years.Years]&amp;&quot;.xlsx]&quot;&amp;[Years.Years]-1&amp;&quot;'!$&quot;&amp;[SheetRef Data.CIF]&amp;&quot;:$CH,MATCH(F$1,'[Home Loan &quot;&amp;[Years.Years]&amp;&quot;.xlsx]&quot;&amp;[Years.Years]-1&amp;&quot;'!$1:$1,0),FALSE)&quot;" stage="Formula" />
+  </stage>
+  <stage stageid="07b6cd45-1d52-4716-b798-33f4ab27c57a" name="Formula" type="Data">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>15</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="b614d98e-6c2b-4a0d-b180-cee56fd20ed5" name="Open HL 2017" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>600</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" narrative="The path and name of the file which should be opened." expr="[FilePath Data.Home Loan 2017]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="WB1" />
+    </outputs>
+    <onsuccess>4c66cf74-5fbd-4194-8a8c-916ed4f2ce25</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="4c66cf74-5fbd-4194-8a8c-916ed4f2ce25" name="Open HL 2018" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>675</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" narrative="The path and name of the file which should be opened." expr="[FilePath Data.Home Loan 2018]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="WB2" />
+    </outputs>
+    <onsuccess>e7869620-53a3-4f8c-b1ab-ace96c69a7d9</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="2bcd58f0-c985-4209-849f-679917c3927b" name="Clear filters" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-75</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[WorkloadWS]" />
+      <input type="number" name="Handle" expr="[handle]" />
+    </inputs>
+    <onsuccess>ff29dabf-ef2d-4b7b-aaf7-0e1d00ca9ae7</onsuccess>
+    <resource object="MS Excel VBO" action="Clear Filter" />
+  </stage>
+  <stage stageid="0d722610-beb9-4fdf-96dd-0b20771b5324" name="Pivot Setup" type="SubSheetInfo">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-480</displayx>
+    <displayy>-135</displayy>
+    <displaywidth>150</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+  </stage>
+  <stage stageid="888a3f9b-fc54-4942-b1c7-d51a8541051c" name="Start" type="Start">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-420</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>9cb92d6f-8121-4b68-b5f4-33c03ff0a878</onsuccess>
+  </stage>
+  <stage stageid="06be32bb-d203-4352-b4ac-104c159894c1" name="End" type="End">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-60</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+  </stage>
+  <stage stageid="b449d46e-9675-49b5-8371-3650d456ced2" name="IV Home Loan Works" type="SubSheet">
+    <narrative>
+    </narrative>
+    <displayx>75</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>d17b3bb3-558c-4c0b-9ca4-b4aebe2ec0ab</onsuccess>
+    <processid>66d97512-eefe-41c1-a883-0c6b5c823e64</processid>
+  </stage>
+  <stage stageid="75cc2e75-f9ba-458e-b6ea-8727f3801083" name="Years" type="Collection">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-45</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Years" type="number" />
+    </collectioninfo>
+  </stage>
+  <stage stageid="0ebe0ca4-1057-4314-8b2a-668f057a35c4" name="Copy and Paste" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>525</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Source Workbook" expr="[WB]" />
+      <input type="text" name="Source Worksheet" expr="[WorkloadWS]" />
+      <input type="text" name="Source Range" expr="[SheetRef Data.CIF]&amp;&quot;:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)" />
+      <input type="text" name="Destination Workbook" expr="[WB]" />
+      <input type="text" name="Destination Worksheet" expr="&quot;HL &quot;&amp;[Years.Years]" />
+      <input type="text" name="Destination Range" expr="[SheetRef Data.CIF]&amp;&quot;:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)" />
+    </inputs>
+    <onsuccess>87dee800-2dd3-4a9f-9a6b-5708ce5fa1d6</onsuccess>
+    <resource object="MS Excel VBO" action="Copy and Paste Worksheet Range" />
+  </stage>
+  <stage stageid="87dee800-2dd3-4a9f-9a6b-5708ce5fa1d6" name="Get Row Count" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>450</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet on which the number of rows is required. The default empty text value indicates the currently active sheet on the specified workbook." expr="&quot;HL &quot;&amp;[Years.Years]" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Number of rows" narrative="The number of rows." stage="Number of rows" />
+    </outputs>
+    <onsuccess>71e2f298-98f2-4216-a572-084b44ccd73d</onsuccess>
+    <resource object="MS Excel VBO" action="Get Number Of Rows" />
+  </stage>
+  <stage stageid="577ffd3d-9864-4b0e-a184-2b6a80897c7a" name="RowNum" type="Data">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>75</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>number</datatype>
+    <initialvalue>1</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="920dee72-901f-4ba0-8568-1526c10437bd" name="Select" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-75</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="Chr([Code]+5)&amp;&quot;2:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)&amp;[Number of rows]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="&quot;HL &quot;&amp;[Years.Years]" />
+    </inputs>
+    <onsuccess>dcb8ead1-8cb0-47f6-9dfa-2de861c2ba64</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="dcb8ead1-8cb0-47f6-9dfa-2de861c2ba64" name="Copy" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-150</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="number" name="Handle" expr="[handle]" />
+    </inputs>
+    <onsuccess>bfdda1d1-664e-48ca-8fe9-2a747aff8b58</onsuccess>
+    <resource object="MS Excel VBO" action="Copy" />
+  </stage>
+  <stage stageid="bfdda1d1-664e-48ca-8fe9-2a747aff8b58" name="Select" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-225</displayx>
+    <displayy>30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="Chr([Code]+5)&amp;&quot;2:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)&amp;[Number of rows]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="&quot;HL &quot;&amp;[Years.Years]" />
+    </inputs>
+    <onsuccess>288c1191-2518-44ab-b42d-0d4de15ede0f</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="288c1191-2518-44ab-b42d-0d4de15ede0f" name="Paste" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-225</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="flag" name="Values Only" expr="True" />
+    </inputs>
+    <onsuccess>308a4b27-189c-4d7e-9eb3-65053377fdeb</onsuccess>
+    <resource object="MS Excel VBO" action="Paste" />
+  </stage>
+  <stage stageid="fdfd45e2-10ba-4f48-981a-cd79c3d8e50d" name="WB1" type="Data">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>135</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="858c27a9-c48c-4789-93c8-36700610d7b0" name="WB2" type="Data">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>195</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ff29dabf-ef2d-4b7b-aaf7-0e1d00ca9ae7" name="Close HL 2017" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>0</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the workbook which should be closed resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook which should be closed." expr="[WB1]" />
+      <input type="flag" name="Save Data" narrative="True to save the data before closing the workbook; The default of False will discard any changes before closing the workbook." expr="False" />
+    </inputs>
+    <onsuccess>21b60d36-f84f-4b72-88fb-c4e4542375eb</onsuccess>
+    <resource object="MS Excel VBO" action="Close Workbook" />
+  </stage>
+  <stage stageid="21b60d36-f84f-4b72-88fb-c4e4542375eb" name="Close HL 2018" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>75</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the workbook which should be closed resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook which should be closed." expr="[WB2]" />
+      <input type="flag" name="Save Data" narrative="True to save the data before closing the workbook; The default of False will discard any changes before closing the workbook." expr="False" />
+    </inputs>
+    <onsuccess>8e361b2e-439a-4cba-911e-7a2aa703d42c</onsuccess>
+    <resource object="MS Excel VBO" action="Close Workbook" />
+  </stage>
+  <stage stageid="8e361b2e-439a-4cba-911e-7a2aa703d42c" name="Get Row Count of HL_Working" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>150</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet on which the number of rows is required. The default empty text value indicates the currently active sheet on the specified workbook." expr="[WorkloadWS]" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Number of rows" narrative="The number of rows." stage="Number of rows" />
+    </outputs>
+    <onsuccess>73d16e1a-31c6-4c18-b8d0-41fd976ce48a</onsuccess>
+    <resource object="MS Excel VBO" action="Get Number Of Rows" />
+  </stage>
+  <stage stageid="73d16e1a-31c6-4c18-b8d0-41fd976ce48a" name="Delete Data" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>225</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[WorkloadWS]" />
+      <input type="text" name="Range" expr="[SheetRef Data.CIF]&amp;&quot;2:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)&amp;[Number of rows]" />
+    </inputs>
+    <onsuccess>78c73e6b-b90c-4b4b-8473-093b8ab4c5d9</onsuccess>
+    <resource object="MS Excel VBO" action="Clear All" />
+  </stage>
+  <stage stageid="7879ed2b-5e59-4322-9cf1-25687029c9b3" name="Years" type="LoopStart">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>375</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>fb7358e1-c5ad-4a69-9979-9b6df41ad943</onsuccess>
+    <groupid>9b8eb633-a8b4-4f76-9537-1629cabeba2d</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Years</loopdata>
+  </stage>
+  <stage stageid="d346d431-563b-4186-8f50-4907b5eb70cd" name="Years" type="LoopEnd">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>675</displayx>
+    <displayy>120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>13d0f78c-7c6d-458e-945c-fa27c62423b9</onsuccess>
+    <groupid>9b8eb633-a8b4-4f76-9537-1629cabeba2d</groupid>
+  </stage>
+  <stage stageid="fb7358e1-c5ad-4a69-9979-9b6df41ad943" name="Get Row Count of sheet" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>450</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet on which the number of rows is required. The default empty text value indicates the currently active sheet on the specified workbook." expr="&quot;HL &quot;&amp;[Years.Years]" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Number of rows" narrative="The number of rows." stage="Number of rows" />
+    </outputs>
+    <onsuccess>6255e70f-7c7b-43bc-8f86-3026f8e37949</onsuccess>
+    <resource object="MS Excel VBO" action="Get Number Of Rows" />
+  </stage>
+  <stage stageid="6255e70f-7c7b-43bc-8f86-3026f8e37949" name="Copy and Paste Range" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>525</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Source Workbook" expr="[WB]" />
+      <input type="text" name="Source Worksheet" expr="&quot;HL &quot;&amp;[Years.Years]" />
+      <input type="text" name="Source Range" expr="[SheetRef Data.CIF]&amp;&quot;2:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)&amp;[Number of rows]" />
+      <input type="text" name="Destination Workbook" expr="[WB]" />
+      <input type="text" name="Destination Worksheet" expr="[WorkloadWS]" />
+      <input type="text" name="Destination Range" expr="[SheetRef Data.CIF]&amp;&quot;&quot;&amp;[RowNum]+1&amp;&quot;:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)&amp;[Number of rows]+([RowNum]-1)" />
+    </inputs>
+    <onsuccess>6ed8a0c0-b219-43aa-bfd7-946da3114c05</onsuccess>
+    <resource object="MS Excel VBO" action="Copy and Paste Worksheet Range" />
+  </stage>
+  <stage stageid="6ed8a0c0-b219-43aa-bfd7-946da3114c05" name="Set Row Num" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>600</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>59a6afac-a12d-40ff-9218-8684727c1041</onsuccess>
+    <calculation expression="[Number of rows]" stage="RowNum" />
+  </stage>
+  <stage stageid="59a6afac-a12d-40ff-9218-8684727c1041" name="Delete HL_2017 WS" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>675</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the worksheet which should be deleted resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook which contains the sheet to be deleted. The default empty value indicates the currently active workbook on the specified instance." expr="[WB]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet to be deleted. The default empty value indicates the currently active worksheet." expr="&quot;HL &quot;&amp;[Years.Years]" />
+    </inputs>
+    <onsuccess>d346d431-563b-4186-8f50-4907b5eb70cd</onsuccess>
+    <resource object="MS Excel VBO" action="Delete Worksheet" />
+  </stage>
+  <stage stageid="315ed3ac-b73f-4c4f-989d-a318b850867f" name="WS" type="Data">
+    <narrative>
+    </narrative>
+    <displayx>345</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="9cb92d6f-8121-4b68-b5f4-33c03ff0a878" name="Get Row Count" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>150</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet on which the number of rows is required. The default empty text value indicates the currently active sheet on the specified workbook." expr="[WorkloadWS]" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Number of rows" narrative="The number of rows." stage="Number of rows" />
+    </outputs>
+    <onsuccess>15add5d6-35c6-4f15-a51c-97104d3fd810</onsuccess>
+    <resource object="MS Excel VBO" action="Get Number Of Rows" />
+  </stage>
+  <stage stageid="aa55a96f-1117-4f42-8576-b7cca7593220" name="Number of rows" type="Data">
+    <narrative>
+    </narrative>
+    <displayx>405</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="4ec4099c-37fb-4c75-92aa-e2919304467e" name="Count" type="Data">
+    <narrative>
+    </narrative>
+    <displayx>465</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>number</datatype>
+    <initialvalue>0</initialvalue>
+  </stage>
+  <stage stageid="d17b3bb3-558c-4c0b-9ca4-b4aebe2ec0ab" name="Pivot Setup" type="SubSheet">
+    <narrative>
+    </narrative>
+    <displayx>150</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>f3ec4788-d2c9-4d67-8a52-ab78971e7977</onsuccess>
+    <processid>1269ad16-075e-4626-9e89-3b8217c58ef9</processid>
+  </stage>
+  <stage stageid="dcc48212-bbdd-42b1-b6c7-ad9bb6723e94" name="Creating Pivot Tbl" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <warningthreshold>5</warningthreshold>
+    <narrative>
+    </narrative>
+    <displayx>420</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[WorkloadWS]" />
+      <input type="flag" name="Creatifmissing" expr="False" />
+      <input type="text" name="Pivot Start Cell Ref" expr="[SheetRef Data.PivotCell]" />
+      <input type="text" name="Row Field Name" expr="&quot;PARA_VALUE&quot;" />
+      <input type="text" name="Sum Field Name" expr="&quot;PARA_VALUE&quot;" />
+      <input type="text" name="Filtering Field Name" expr="&quot;EY_IRB_Def_1Yr_FLG&quot;" />
+      <input type="text" name="Field" expr="" />
+      <input type="text" name="Pivot Table Name" expr="&quot;P1&quot;" />
+      <input type="text" name="PivotRange" expr="[SheetRef Data.CIF]&amp;&quot;1:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)&amp;[Number of rows]" />
+      <input type="text" name="DsWorksheet" expr="[WS]" />
+    </inputs>
+    <onsuccess>6905899b-f54b-44e3-8532-07aff145a786</onsuccess>
+    <resource object="MS Excel VBO" action="pivot - Gen" />
+  </stage>
+  <stage stageid="e687fe72-5048-4c93-ac2a-8cfadc623d35" name="WorkloadWS" type="Data">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>30</displayx>
+    <displayy>375</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+  </stage>
+  <stage stageid="63ed4fc3-9875-40b1-b06d-82a897c4ffc0" name="Input" type="Block">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-90</displayx>
+    <displayy>-240</displayy>
+    <displaywidth>255</displaywidth>
+    <displayheight>90</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="39f8646b-9586-40f8-9f46-f35d58a9982f" name="Output" type="Block">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>0</displayx>
+    <displayy>345</displayy>
+    <displaywidth>240</displaywidth>
+    <displayheight>45</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="FF99CC" />
+  </stage>
+  <stage stageid="c22d70a4-32a7-4733-afaf-b3c0a7fb9e00" name="PARA_VALUE Collection" type="Collection">
+    <narrative>
+    </narrative>
+    <displayx>525</displayx>
+    <displayy>135</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>collection</datatype>
+    <alwaysinit />
+    <collectioninfo>
+      <field name="ParaValue" type="text" />
+    </collectioninfo>
+  </stage>
+  <stage stageid="0a683351-829f-41c7-b23a-59b2abab28af" name="Add Row to Collection" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>450</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;PARA_VALUE Collection&quot;" />
+    </inputs>
+    <onsuccess>4e0ef0ba-7faf-48e9-9254-adcf6aa94fbb</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="4e0ef0ba-7faf-48e9-9254-adcf6aa94fbb" name="Set ParaValue" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>375</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>5cd13529-caf4-4973-93ff-b44699d79d51</onsuccess>
+    <calculation expression="&quot;PARA_VALUE_&quot;&amp;[Count]" stage="PARA_VALUE Collection.ParaValue" />
+  </stage>
+  <stage stageid="21260540-d214-4795-b45a-4eacb9d4f76d" name="Summary Copy and Paste Collection" type="LoopStart">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-735</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>4826d3d1-739a-4eb2-8281-38b33acb0832</onsuccess>
+    <groupid>deee48c8-0ccc-423b-9716-587d19296ae2</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Summary Copy and Paste Collection</loopdata>
+  </stage>
+  <stage stageid="686cf0fd-e3fd-4cc6-9d90-16a3136c6e0f" name="Summary Copy and Paste Collection" type="LoopEnd">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-210</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>422461de-8005-4d20-bbc2-1c2115e8e924</onsuccess>
+    <groupid>deee48c8-0ccc-423b-9716-587d19296ae2</groupid>
+  </stage>
+  <stage stageid="14ea25a4-d6de-4ac9-9c60-bbfc9a961a3d" name="Summary Copy and Paste Collection" type="Collection">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>90</displayx>
+    <displayy>375</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="ParaValue" type="text" />
+      <field name="PasteRange" type="text" />
+      <field name="CopyRange" type="text" />
+    </collectioninfo>
+  </stage>
+  <stage stageid="6905899b-f54b-44e3-8532-07aff145a786" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>495</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>931307b6-a6c8-4b15-831c-2238f90da656</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="931307b6-a6c8-4b15-831c-2238f90da656" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>570</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>acf1e88a-4389-4b3f-962c-7cdda65caeb1</onsuccess>
+    <steps>
+      <calculation expression="&quot;Para value&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="Left([SheetRef Data.Cycle1],1)&amp;&quot;3:&quot;&amp;Right([SheetRef Data.Cycle1],1)&amp;&quot;10&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;3:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;10&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="e426c216-da73-4f8d-9049-c4d67ae0fdec" name="ParaValueNumber" type="ChoiceStart">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>645</displayx>
+    <displayy>15</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <groupid>9cab4110-0af0-4de2-8eb7-e17f2ff7abc5</groupid>
+    <choices>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_1&quot;">
+        <name>PARA_VALUE_1</name>
+        <distance>45</distance>
+        <ontrue>e9e6100f-8e6d-4d18-993a-b853c13c72e7</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_2&quot;">
+        <name>PARA_VALUE_2</name>
+        <distance>105</distance>
+        <ontrue>29bc429c-493e-4350-9f94-e83016cdf94d</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_3&quot;">
+        <name>PARA_VALUE_3</name>
+        <distance>165</distance>
+        <ontrue>43a94fc8-78da-4f94-bc3f-76c232b70420</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_4&quot;">
+        <name>PARA_VALUE_4</name>
+        <distance>225</distance>
+        <ontrue>e35439eb-a7bd-4975-b4fd-3a3627d0b0fb</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_5&quot;">
+        <name>PARA_VALUE_5</name>
+        <distance>285</distance>
+        <ontrue>0cca9f81-f355-4f09-9bcf-8d2b1cde4bdd</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_6&quot;">
+        <name>PARA_VALUE_6</name>
+        <distance>345</distance>
+        <ontrue>8db7923b-5371-4168-aadc-88fced7cd958</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_7&quot;">
+        <name>PARA_VALUE_7</name>
+        <distance>405</distance>
+        <ontrue>f431b886-b074-469e-8abb-37bea8ceb4c4</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_8&quot;">
+        <name>PARA_VALUE_8</name>
+        <distance>465</distance>
+        <ontrue>753eb919-7ffb-4fd4-b228-5609613ec7d6</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_9&quot;">
+        <name>PARA_VALUE_9</name>
+        <distance>525</distance>
+        <ontrue>e71fb6cc-4d0e-4c1f-b613-05bbbf22c7ce</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_10&quot;">
+        <name>PARA_VALUE_10</name>
+        <distance>585</distance>
+        <ontrue>9370535c-ddff-4703-b679-fd5197c9f930</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_11&quot;">
+        <name>PARA_VALUE_11</name>
+        <distance>645</distance>
+        <ontrue>247b21ff-329b-466b-8691-6335b6d6df70</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_12&quot;">
+        <name>PARA_VALUE_12</name>
+        <distance>705</distance>
+        <ontrue>8fa0677d-eb49-4610-8b79-dc0e08e98abf</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_13&quot;">
+        <name>PARA_VALUE_13</name>
+        <distance>765</distance>
+        <ontrue>174d6391-cb10-458c-96f4-88608a03eca2</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_14&quot;">
+        <name>PARA_VALUE_14</name>
+        <distance>825</distance>
+        <ontrue>8b9b697b-dcd4-41bc-b008-6a9f4c2a9fbd</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_15&quot;">
+        <name>PARA_VALUE_15</name>
+        <distance>885</distance>
+        <ontrue>b129e69c-8c87-4a3b-bdf9-64eaf9a9fc79</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_16&quot;">
+        <name>PARA_VALUE_16</name>
+        <distance>945</distance>
+        <ontrue>cecb8b1a-6696-4ffa-9004-a8cffe2a995c</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_17&quot;">
+        <name>PARA_VALUE_17</name>
+        <distance>1005</distance>
+        <ontrue>c562ec36-ff63-486b-80ad-5890ffd2f3d5</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_18&quot;">
+        <name>PARA_VALUE_18</name>
+        <distance>1065</distance>
+        <ontrue>eb637932-c060-4f3f-aae7-baeed7e1fca0</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_19&quot;">
+        <name>PARA_VALUE_19</name>
+        <distance>1125</distance>
+        <ontrue>a965028c-f6f8-46dd-a678-7a5eaa597193</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_20&quot;">
+        <name>PARA_VALUE_20</name>
+        <distance>1185</distance>
+        <ontrue>59ca5ebd-9bf0-4964-8ae8-036f16668808</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_21&quot;">
+        <name>PARA_VALUE_21</name>
+        <distance>1245</distance>
+        <ontrue>519b61f7-12e5-4732-a1c6-bf83d0daec4f</ontrue>
+      </choice>
+      <choice expression="[PARA_VALUE Collection.ParaValue] = &quot;PARA_VALUE_22&quot;">
+        <name>PARA_VALUE_22</name>
+        <distance>1305</distance>
+        <ontrue>b39e2fc0-dd15-4f3e-af5c-57936c9344f5</ontrue>
+      </choice>
+    </choices>
+  </stage>
+  <stage stageid="34c67ea3-5320-4d85-aa7a-f5c59525aede" name="Otherwise3" type="ChoiceEnd">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-735</displayx>
+    <displayy>15</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>4f76ee91-9a00-4cb6-982e-50a182845b6c</onsuccess>
+    <groupid>9cab4110-0af0-4de2-8eb7-e17f2ff7abc5</groupid>
+  </stage>
+  <stage stageid="e9e6100f-8e6d-4d18-993a-b853c13c72e7" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>600</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>48bda352-18c0-48d1-8524-3455ec97a246</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="48bda352-18c0-48d1-8524-3455ec97a246" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>600</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_1&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;12&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;14:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;20&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="562c5a0c-1b84-4128-812f-afc2130d45e5" name="Change Filter Settings" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <warningthreshold>5</warningthreshold>
+    <narrative>
+    </narrative>
+    <displayx>-585</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Worksheet" expr="[WorkloadWS]" />
+      <input type="text" name="Field" expr="" />
+      <input type="flag" name="Creatifmissing" expr="False" />
+      <input type="text" name="Pivot Start Cell Ref" expr="[SheetRef Data.PivotCell]" />
+      <input type="text" name="Row Field Name" expr="[Summary Copy and Paste Collection.ParaValue]" />
+      <input type="text" name="Sum Field Name" expr="[Summary Copy and Paste Collection.ParaValue]" />
+      <input type="text" name="Pivot Table Name" expr="&quot;P1&quot;" />
+      <input type="text" name="PivotRange" expr="[SheetRef Data.CIF]&amp;&quot;1:&quot;&amp;[SheetRef Data.CIF]&amp;Chr([Count]-21+64)&amp;[Number of rows]" />
+      <input type="text" name="DsWorksheet" expr="[WS]" />
+      <input type="text" name="Filtering Field Name" expr="&quot;EY_IRB_Def_1Yr_FLG&quot;" />
+    </inputs>
+    <onsuccess>31176cd3-34e4-4ae6-97b8-666c3dfc6785</onsuccess>
+    <resource object="MS Excel VBO" action="pivot - Filter Settings" />
+  </stage>
+  <stage stageid="acf1e88a-4389-4b3f-962c-7cdda65caeb1" name="PARA_VALUE Collection" type="LoopStart">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>645</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>e426c216-da73-4f8d-9049-c4d67ae0fdec</onsuccess>
+    <groupid>699fb6fb-cc3c-4c9d-a3ac-955d04e3f2b5</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>PARA_VALUE Collection</loopdata>
+  </stage>
+  <stage stageid="4f76ee91-9a00-4cb6-982e-50a182845b6c" name="PARA_VALUE Collection" type="LoopEnd">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-735</displayx>
+    <displayy>165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>21260540-d214-4795-b45a-4eacb9d4f76d</onsuccess>
+    <groupid>699fb6fb-cc3c-4c9d-a3ac-955d04e3f2b5</groupid>
+  </stage>
+  <stage stageid="29bc429c-493e-4350-9f94-e83016cdf94d" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>540</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>3601ae5a-5ed5-42d7-8a01-de898067298a</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="3601ae5a-5ed5-42d7-8a01-de898067298a" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>540</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_2&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;11&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;24:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;29&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="43a94fc8-78da-4f94-bc3f-76c232b70420" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>480</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>90fd1d11-18ef-4871-a5de-0de5392a17bc</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="90fd1d11-18ef-4871-a5de-0de5392a17bc" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>480</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_3&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;35&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;33:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;62&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="e35439eb-a7bd-4975-b4fd-3a3627d0b0fb" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>420</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>117d5ff9-a42e-4f64-92b8-75ac684c0329</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="0cca9f81-f355-4f09-9bcf-8d2b1cde4bdd" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>360</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>03cb6f80-b83e-4eae-a36e-25bdccdc1019</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="8db7923b-5371-4168-aadc-88fced7cd958" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>300</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>31007e90-acca-41d1-b160-72678a2dc072</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="f431b886-b074-469e-8abb-37bea8ceb4c4" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>240</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>e5bd77fe-e804-4885-99fe-29d39e77106c</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="753eb919-7ffb-4fd4-b228-5609613ec7d6" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>180</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>31e28ca7-ef74-4d06-947a-7a27a83b0c6d</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="e71fb6cc-4d0e-4c1f-b613-05bbbf22c7ce" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>120</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>c57c597a-8155-43ff-87cd-3ca1d211b2f7</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="9370535c-ddff-4703-b679-fd5197c9f930" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>60</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>bfe4553a-771c-4557-af00-b6144829cb25</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="247b21ff-329b-466b-8691-6335b6d6df70" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>0</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>cca0aa13-fc0a-4baa-911d-54f799288dd4</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="8fa0677d-eb49-4610-8b79-dc0e08e98abf" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-60</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>5e19afa3-60d4-401b-a26b-f0262e82c84b</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="174d6391-cb10-458c-96f4-88608a03eca2" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-120</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>2dd78f65-2521-4aea-949c-181b6bef831e</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="8b9b697b-dcd4-41bc-b008-6a9f4c2a9fbd" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-180</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>e840a622-69b9-45a5-a62e-4960679d94ad</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="b129e69c-8c87-4a3b-bdf9-64eaf9a9fc79" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-240</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>f9e4e300-e1bf-4798-8fd0-19ebca3cf396</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="cecb8b1a-6696-4ffa-9004-a8cffe2a995c" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-300</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>bfd25fbe-0c40-48d3-86b4-34eeb8d8f54b</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="c562ec36-ff63-486b-80ad-5890ffd2f3d5" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-360</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>daf4d44b-c716-48af-b89e-3be51fcd9a64</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="eb637932-c060-4f3f-aae7-baeed7e1fca0" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-420</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>10f398bc-9c82-445c-881c-9c12d70abbf4</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="a965028c-f6f8-46dd-a678-7a5eaa597193" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-480</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>a1d306e6-a43d-418b-9a33-3b6dd15907dc</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="59ca5ebd-9bf0-4964-8ae8-036f16668808" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-540</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>9a4b9255-43f4-4d22-baa7-370e4971f2f1</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="519b61f7-12e5-4732-a1c6-bf83d0daec4f" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-600</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>69fb44d7-d9f4-4467-b4a1-5b7940baf2c3</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="b39e2fc0-dd15-4f3e-af5c-57936c9344f5" name="Add Row to Collection" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-660</displayx>
+    <displayy>60</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Summary Copy and Paste Collection&quot;" />
+    </inputs>
+    <onsuccess>ec6144c2-18ea-46e0-b9e2-25008ce39f94</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="117d5ff9-a42e-4f64-92b8-75ac684c0329" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>420</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_4&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;27&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;66:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;87&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="03cb6f80-b83e-4eae-a36e-25bdccdc1019" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>360</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_5&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;9&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;91:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;94&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="31007e90-acca-41d1-b160-72678a2dc072" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>300</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_6&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;9&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;98:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;101&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="e5bd77fe-e804-4885-99fe-29d39e77106c" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>240</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_7&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="Left([SheetRef Data.Cycle1],1)&amp;&quot;3:&quot;&amp;Right([SheetRef Data.Cycle1],1)&amp;&quot;10&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;105:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;112&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="31e28ca7-ef74-4d06-947a-7a27a83b0c6d" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>180</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_8&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;12&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;116:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;122&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="c57c597a-8155-43ff-87cd-3ca1d211b2f7" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>120</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_9&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;11&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;126:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;131&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="bfe4553a-771c-4557-af00-b6144829cb25" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>60</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_10&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;24&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;135:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;153&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="cca0aa13-fc0a-4baa-911d-54f799288dd4" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>0</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_11&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;18&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;157:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;169&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="5e19afa3-60d4-401b-a26b-f0262e82c84b" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-60</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_12&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;10&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;173:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;177&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="2dd78f65-2521-4aea-949c-181b6bef831e" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-120</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_13&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;9&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;181:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;184&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="e840a622-69b9-45a5-a62e-4960679d94ad" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-180</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_14&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;8&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;188:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;190&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="f9e4e300-e1bf-4798-8fd0-19ebca3cf396" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-240</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_15&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="Left([SheetRef Data.Cycle2],1)&amp;&quot;3:&quot;&amp;Right([SheetRef Data.Cycle2],1)&amp;&quot;9&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;194:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;200&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="bfd25fbe-0c40-48d3-86b4-34eeb8d8f54b" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-300</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_16&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="Left([SheetRef Data.Cycle1],1)&amp;&quot;14:&quot;&amp;Right([SheetRef Data.Cycle1],1)&amp;&quot;23&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;204:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;213&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="daf4d44b-c716-48af-b89e-3be51fcd9a64" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-360</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_17&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="Left([SheetRef Data.Cycle2],1)&amp;&quot;14:&quot;&amp;Right([SheetRef Data.Cycle2],1)&amp;&quot;21&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;217:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;224&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="10f398bc-9c82-445c-881c-9c12d70abbf4" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-420</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_18&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;15&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;228:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;237&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="a1d306e6-a43d-418b-9a33-3b6dd15907dc" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-480</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_19&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;16&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;241:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;251&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="9a4b9255-43f4-4d22-baa7-370e4971f2f1" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-540</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_20&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;15&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;255:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;264&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="69fb44d7-d9f4-4467-b4a1-5b7940baf2c3" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-600</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_21&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;15&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;268:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;277&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="ec6144c2-18ea-46e0-b9e2-25008ce39f94" name="SetCalculation" type="MultipleCalculation">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-660</displayx>
+    <displayy>105</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>a24a8a6d-9d74-49a7-aaf9-838998c08018</onsuccess>
+    <steps>
+      <calculation expression="&quot;PARA_VALUE_22&quot;" stage="Summary Copy and Paste Collection.ParaValue" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;6:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;13&quot;" stage="Summary Copy and Paste Collection.CopyRange" />
+      <calculation expression="[SheetRef Data.CIF]&amp;&quot;281:&quot;&amp;[SheetRef Data.CellEnd]&amp;&quot;288&quot;" stage="Summary Copy and Paste Collection.PasteRange" />
+    </steps>
+  </stage>
+  <stage stageid="a24a8a6d-9d74-49a7-aaf9-838998c08018" name="Anchor2" type="Anchor">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>45</displayx>
+    <displayy>180</displayy>
+    <displaywidth>10</displaywidth>
+    <displayheight>10</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>4f76ee91-9a00-4cb6-982e-50a182845b6c</onsuccess>
+  </stage>
+  <stage stageid="49c32f93-9bc4-4900-be7c-4c0bb0d037dd" name="FinalSheet" type="Data">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>150</displayx>
+    <displayy>375</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+  </stage>
+  <stage stageid="4826d3d1-739a-4eb2-8281-38b33acb0832" name="Para value?" type="Decision">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-660</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <decision expression="[Summary Copy and Paste Collection.ParaValue] = &quot;Para value&quot;" />
+    <ontrue>ef332618-d429-4014-a093-9980e8218d09</ontrue>
+    <onfalse>562c5a0c-1b84-4128-812f-afc2130d45e5</onfalse>
+  </stage>
+  <stage stageid="ef332618-d429-4014-a093-9980e8218d09" name="Anchor3" type="Anchor">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-585</displayx>
+    <displayy>270</displayy>
+    <displaywidth>10</displaywidth>
+    <displayheight>10</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>31176cd3-34e4-4ae6-97b8-666c3dfc6785</onsuccess>
+  </stage>
+  <stage stageid="d3cf8610-5d8c-47bb-af3a-1d502c1c302c" name="Select" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-360</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="[Summary Copy and Paste Collection.PasteRange]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[FinalSheet]" />
+    </inputs>
+    <onsuccess>4f1d4fe0-912f-4025-a877-eeab35fbb113</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="454b4f94-3de4-4847-9b7a-82f94b022dac" name="Copy" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-435</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="number" name="Handle" expr="[handle]" />
+    </inputs>
+    <onsuccess>d3cf8610-5d8c-47bb-af3a-1d502c1c302c</onsuccess>
+    <resource object="MS Excel VBO" action="Copy" />
+  </stage>
+  <stage stageid="4f1d4fe0-912f-4025-a877-eeab35fbb113" name="Paste" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-285</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="flag" name="Values Only" expr="True" />
+    </inputs>
+    <onsuccess>686cf0fd-e3fd-4cc6-9d90-16a3136c6e0f</onsuccess>
+    <resource object="MS Excel VBO" action="Paste" />
+  </stage>
+  <stage stageid="422461de-8005-4d20-bbc2-1c2115e8e924" name="Close Workbook" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-135</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the workbook which should be closed resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook which should be closed." expr="[WB]" />
+      <input type="flag" name="Save Data" narrative="True to save the data before closing the workbook; The default of False will discard any changes before closing the workbook." expr="True" />
+    </inputs>
+    <onsuccess>06be32bb-d203-4352-b4ac-104c159894c1</onsuccess>
+    <resource object="MS Excel VBO" action="Close Workbook" />
+  </stage>
+  <stage stageid="31176cd3-34e4-4ae6-97b8-666c3dfc6785" name="Select" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-510</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="[Summary Copy and Paste Collection.CopyRange]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[WS]" />
+    </inputs>
+    <onsuccess>454b4f94-3de4-4847-9b7a-82f94b022dac</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="000f2085-fc83-4433-93f3-a1c9277e1b38" name="Add row to Years Collection" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-165</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Years&quot;" />
+    </inputs>
+    <onsuccess>7d59ac9e-34ae-42d9-adc1-50fe8a657626</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="8eff04a6-754a-4114-9bd2-456d8d9119b2" name="Add row to Years Collection" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-15</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Years&quot;" />
+    </inputs>
+    <onsuccess>bc3e9771-abef-4a40-81c7-873018e59d72</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="7d59ac9e-34ae-42d9-adc1-50fe8a657626" name="Set the Years" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-90</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>8eff04a6-754a-4114-9bd2-456d8d9119b2</onsuccess>
+    <calculation expression="[SheetRef Data.PrvsYr]" stage="Years.Years" />
+  </stage>
+  <stage stageid="bc3e9771-abef-4a40-81c7-873018e59d72" name="Set the Years" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>60</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>e0b0b1f0-1a6a-4845-9db9-5e16e95a2349</onsuccess>
+    <calculation expression="[SheetRef Data.CurrentYr]" stage="Years.Years" />
+  </stage>
+  <stage stageid="15add5d6-35c6-4f15-a51c-97104d3fd810" name="FindPivotTable" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>225</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[WS]" />
+      <input type="number" name="Handle" expr="[handle]" />
+    </inputs>
+    <outputs>
+      <output type="flag" name="FindPivot" stage="FindPivot" />
+    </outputs>
+    <onsuccess>5ab0bf8b-dd17-43f8-9120-176e3c95f8ed</onsuccess>
+    <resource object="MS Excel VBO" action="find PivotTable" />
+  </stage>
+  <stage stageid="90065d35-63ed-45f1-be7f-4e432396b724" name="FindPivot" type="Data">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>210</displayx>
+    <displayy>375</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>flag</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="5ab0bf8b-dd17-43f8-9120-176e3c95f8ed" name="findPivot?" type="Decision">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>300</displayx>
+    <displayy>-30</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <decision expression="[FindPivot]" />
+    <ontrue>5ecbe1a0-49d2-42c8-ab59-89cf9e479a8c</ontrue>
+    <onfalse>dcc48212-bbdd-42b1-b6c7-ad9bb6723e94</onfalse>
+  </stage>
+  <stage stageid="5ecbe1a0-49d2-42c8-ab59-89cf9e479a8c" name="Delete Pivot" type="Action">
+    <subsheetid>1269ad16-075e-4626-9e89-3b8217c58ef9</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>300</displayx>
+    <displayy>-75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="DsWorksheet" expr="[WS]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="flag" name="Creatifmissing" expr="True" />
+      <input type="text" name="Pivot Table Name" expr="&quot;P1&quot;" />
+    </inputs>
+    <onsuccess>dcc48212-bbdd-42b1-b6c7-ad9bb6723e94</onsuccess>
+    <resource object="MS Excel VBO" action="Delete PivotTable" />
+  </stage>
+  <stage stageid="d6d12015-aecc-4e44-9542-6ce31d3584c0" name="Get Row Count" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-240</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the number of rows is required. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook on which the number of rows is required. The default empty text value indicates the currently active workbook on the specified instance." expr="[WB]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet on which the number of rows is required. The default empty text value indicates the currently active sheet on the specified workbook." expr="[FinalSheet]" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Number of rows" narrative="The number of rows." stage="Number of rows" />
+    </outputs>
+    <onsuccess>e4291aa1-20e7-4d04-b629-4b40e1fc9723</onsuccess>
+    <resource object="MS Excel VBO" action="Get Number Of Rows" />
+  </stage>
+  <stage stageid="6906661b-98ee-4aff-8309-6c1e7cd1ffa7" name="WS Names" type="LoopStart">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>285</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>c6f7c816-d582-4bfb-83c0-0bbf71fd9322</onsuccess>
+    <groupid>a28d876f-4041-47fb-bdd3-4aba625aafc8</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Worksheet Names</loopdata>
+  </stage>
+  <stage stageid="101d419f-1ff8-470b-9a7e-3a905d4b4c14" name="WS Names" type="LoopEnd">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>705</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>d6d12015-aecc-4e44-9542-6ce31d3584c0</onsuccess>
+    <groupid>a28d876f-4041-47fb-bdd3-4aba625aafc8</groupid>
+  </stage>
+  <stage stageid="6eaeb6ba-32fe-462b-b385-53bad92228ab" name="Set WS" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>420</displayx>
+    <displayy>-195</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>5ed770e8-1e40-4ee0-974c-b7bbbd140d51</onsuccess>
+    <calculation expression="[Worksheet Names.Name]" stage="WS" />
+  </stage>
+  <stage stageid="c6f7c816-d582-4bfb-83c0-0bbf71fd9322" name="WS Names" type="ChoiceStart">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>360</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <groupid>f965beff-ecb0-4683-8ce1-453de1107412</groupid>
+    <choices>
+      <choice expression="[Worksheet Names.Name] = &quot;Pivot&quot;">
+        <name>Pivot</name>
+        <distance>67.5</distance>
+        <ontrue>6eaeb6ba-32fe-462b-b385-53bad92228ab</ontrue>
+      </choice>
+      <choice expression="[Worksheet Names.Name] = &quot;HL_Working&quot;">
+        <name>HL_Working</name>
+        <distance>135</distance>
+        <ontrue>f3ab9417-8405-4083-a7cb-b5e5608498d4</ontrue>
+      </choice>
+      <choice expression="[Worksheet Names.Name] =&quot;IV for each Parameter&quot;">
+        <name>IV for each Parameter</name>
+        <distance>202.5</distance>
+        <ontrue>dc6933bd-4581-4c53-80db-5b2285f13dc8</ontrue>
+      </choice>
+    </choices>
+  </stage>
+  <stage stageid="3ae5a9b1-c5ca-4fbb-97d4-4b7a8dfb370f" name="Otherwise2" type="ChoiceEnd">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>630</displayx>
+    <displayy>-165</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>101d419f-1ff8-470b-9a7e-3a905d4b4c14</onsuccess>
+    <groupid>f965beff-ecb0-4683-8ce1-453de1107412</groupid>
+  </stage>
+  <stage stageid="f3ab9417-8405-4083-a7cb-b5e5608498d4" name="Set WS" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>495</displayx>
+    <displayy>-195</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>5ed770e8-1e40-4ee0-974c-b7bbbd140d51</onsuccess>
+    <calculation expression="[Worksheet Names.Name]" stage="WorkloadWS" />
+  </stage>
+  <stage stageid="5ed770e8-1e40-4ee0-974c-b7bbbd140d51" name="Anchor1" type="Anchor">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>495</displayx>
+    <displayy>-255</displayy>
+    <displaywidth>10</displaywidth>
+    <displayheight>10</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>101d419f-1ff8-470b-9a7e-3a905d4b4c14</onsuccess>
+  </stage>
+  <stage stageid="dc6933bd-4581-4c53-80db-5b2285f13dc8" name="Set WS" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>570</displayx>
+    <displayy>-195</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>5ed770e8-1e40-4ee0-974c-b7bbbd140d51</onsuccess>
+    <calculation expression="[Worksheet Names.Name]" stage="FinalSheet" />
+  </stage>
+  <stage stageid="e4291aa1-20e7-4d04-b629-4b40e1fc9723" name="Select" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-165</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="text" name="Cell Reference" expr="&quot;A&quot;&amp;[Number of rows]" />
+      <input type="number" name="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" expr="[WB]" />
+      <input type="text" name="Worksheet" expr="[FinalSheet]" />
+    </inputs>
+    <onsuccess>7fa0f4ae-78e4-4cd5-9c6a-c50a1c15dbc2</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="7fa0f4ae-78e4-4cd5-9c6a-c50a1c15dbc2" name="Get the Cell Reference" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-90</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the required cell should be found. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Cell Reference" narrative="The reference of the cell which has been found to be empty - an empty value indicates that no empty cells were found." stage="Cell Reference" />
+    </outputs>
+    <onsuccess>f55aec36-c5ac-48eb-add8-394400c005f7</onsuccess>
+    <resource object="MS Excel VBO" action="Go To Next Empty Cell Up" />
+  </stage>
+  <stage stageid="ac7823a9-5ea2-4118-b9ed-43329bccc1f7" name="cal RowNum" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>285</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>5cd13529-caf4-4973-93ff-b44699d79d51</onsuccess>
+    <calculation expression="ToNumber(Mid([Value],12,Len([Value])-11))" stage="RowNum" />
+  </stage>
+  <stage stageid="f55aec36-c5ac-48eb-add8-394400c005f7" name="Get the Cell Value" type="Action">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>-15</displayx>
+    <displayy>-120</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance from which the required cell value should be retrieved. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" narrative="The cell reference indicating which cell's value should be retrieved. An empty value indicates that the currently active cell's value should be retrieved." expr="Left([Cell Reference],1)&amp;ToNumber(Right([Cell Reference],Len([Cell Reference])-1))+1" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Value" narrative="The (unformatted) value from the required cell." stage="Value" />
+    </outputs>
+    <onsuccess>c28c7b73-0bf5-4dfd-bc6e-9287c04445a6</onsuccess>
+    <resource object="MS Excel VBO" action="Get Cell Value" />
+  </stage>
+  <stage stageid="5a63ac8d-5f31-4807-8f6d-a0c217a2d82d" name="Value" type="Data">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>255</displayx>
+    <displayy>210</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="78c73e6b-b90c-4b4b-8473-093b8ab4c5d9" name="Set RowNum to 1" type="Calculation">
+    <subsheetid>66d97512-eefe-41c1-a883-0c6b5c823e64</subsheetid>
+    <narrative>
+    </narrative>
+    <displayx>300</displayx>
+    <displayy>75</displayy>
+    <displaywidth>60</displaywidth>
+    <displayheight>30</displayheight>
+    <font family="Segoe UI" size="10" style="Regular" color="000000" />
+    <onsuccess>7879ed2b-5e59-4322-9cf1-25687029c9b3</onsuccess>
+    <calculation expression="1" stage="RowNum" />
+  </stage>
+</process>
